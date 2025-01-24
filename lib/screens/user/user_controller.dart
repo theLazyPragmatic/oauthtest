@@ -19,9 +19,17 @@ class UserController extends StateNotifier<bool> {
       : _authAPI = authAPI,
         super(false);
 
-  Future<void> createDiscordSession() async {
+  Future<void> createGoogleSession() async {
     state = true;
-    await _authAPI.createDiscordSession();
+    print(state);
+    await _authAPI.createGoogleSession();
+    state = false;
+    print(state);
+  }
+
+  Future<void> logout() async {
+    state = true;
+    await _authAPI.logout();
     state = false;
   }
 

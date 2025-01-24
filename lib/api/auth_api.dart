@@ -23,11 +23,17 @@ class AuthAPI {
     }
   }
 
-  Future<void> createDiscordSession() async {
+  Future<void> createGoogleSession() async {
     try {
-      await _account.createOAuth2Session(provider: OAuthProvider.discord);
+      await _account.createOAuth2Session(
+          // provider: OAuthProvider.discord);
+          provider: OAuthProvider.google);
     } catch (e) {
       print("Failed to create Session: ${e.toString()}");
     }
+  }
+
+  Future<void> logout() async {
+    await _account.deleteSession(sessionId: "current");
   }
 }
