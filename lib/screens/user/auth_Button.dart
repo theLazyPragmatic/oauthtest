@@ -42,3 +42,23 @@ class GoogleButton extends StatelessWidget {
     );
   }
 }
+
+class DiscordButton extends StatelessWidget {
+  final VoidCallback onTap;
+  const DiscordButton({super.key, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onTap,
+      icon: Icon(
+        Icons.discord,
+        color: Colors.white,
+      ),
+      style: IconButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 150, 0, 0),
+        padding: EdgeInsets.symmetric(horizontal: 30),
+      ),
+    );
+  }
+}

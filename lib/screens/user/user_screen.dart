@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:oauthtest/screens/shared/loading_screen.dart';
+import 'package:oauthtest/screens/user/auth_Button.dart';
 import 'package:oauthtest/screens/user/user_controller.dart';
 
 class UserScreen extends ConsumerStatefulWidget {
@@ -12,6 +13,10 @@ class UserScreen extends ConsumerStatefulWidget {
 
 class _UserScreenState extends ConsumerState<UserScreen> {
   void onGoogleLogin() {
+    ref.watch(userControllerProvider.notifier).createGoogleSession();
+  }
+
+  void onDiscordLogin() {
     ref.watch(userControllerProvider.notifier).createGoogleSession();
   }
 
@@ -37,17 +42,10 @@ class _UserScreenState extends ConsumerState<UserScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    IconButton(
-                      onPressed: user != null ? onLogout : onGoogleLogin,
-                      icon: Icon(
-                        user != null ? Icons.logout : Icons.g_mobiledata,
-                        color: Colors.white,
-                      ),
-                      style: IconButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 150, 0, 0),
-                        padding: EdgeInsets.symmetric(horizontal: 30),
-                      ),
-                    )
+                    user != null
+                        ? LogoutButton(onTap: onLogout)
+                        : GoogleButton(onTap: onGoogleLogin),
+                    if (user == null) DiscordButton(onTap: onDiscordLogin)
                   ],
                 ),
               ),

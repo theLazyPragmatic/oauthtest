@@ -21,10 +21,14 @@ class UserController extends StateNotifier<bool> {
 
   Future<void> createGoogleSession() async {
     state = true;
-    print(state);
     await _authAPI.createGoogleSession();
     state = false;
-    print(state);
+  }
+
+  Future<void> createDiscordSession() async {
+    state = true;
+    await _authAPI.createDiscordSession();
+    state = false;
   }
 
   Future<void> logout() async {
@@ -33,5 +37,8 @@ class UserController extends StateNotifier<bool> {
     state = false;
   }
 
-  Future<User?> currentUser() => _authAPI.getUserAccount();
+  Future<User?> currentUser() async {
+    final User? user = await _authAPI.getUserAccount();
+    return user;
+  }
 }

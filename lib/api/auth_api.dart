@@ -25,9 +25,15 @@ class AuthAPI {
 
   Future<void> createGoogleSession() async {
     try {
-      await _account.createOAuth2Session(
-          // provider: OAuthProvider.discord);
-          provider: OAuthProvider.google);
+      await _account.createOAuth2Session(provider: OAuthProvider.google);
+    } catch (e) {
+      print("Failed to create Session: ${e.toString()}");
+    }
+  }
+
+  Future<void> createDiscordSession() async {
+    try {
+      await _account.createOAuth2Session(provider: OAuthProvider.discord);
     } catch (e) {
       print("Failed to create Session: ${e.toString()}");
     }
