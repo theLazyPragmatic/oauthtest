@@ -17,7 +17,7 @@ class _UserScreenState extends ConsumerState<UserScreen> {
   }
 
   void onDiscordLogin() {
-    ref.watch(userControllerProvider.notifier).createGoogleSession();
+    ref.watch(userControllerProvider.notifier).createDiscordSession();
   }
 
   void onLogout() {
